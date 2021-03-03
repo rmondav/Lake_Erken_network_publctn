@@ -1,0 +1,77 @@
+SUID,edge,from,to,av_corr,interaction,name,phydist,from_genus,from_col,to_genus,to_col,from_phyla,to_phyla,from_phyla_col,to_phyla_col
+1842,28to49,FN668259.1.1474,FN668262.1.1467,0.62892429,co,FN668259.1.1474 (co) FN668262.1.1467,0.99184,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1807,26to49,JN868973.1.1510,FN668262.1.1467,0.761126354,co,JN868973.1.1510 (co) FN668262.1.1467,0.9188,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1786,18to49,JN869030.1.1506,FN668262.1.1467,0.571731542,co,JN869030.1.1506 (co) FN668262.1.1467,0.98948,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1816,49to59,FN668262.1.1467,HM856571.1.1445,0.773164184,co,FN668262.1.1467 (co) HM856571.1.1445,0.02138,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1690,3to83,EU801039.1.1483,FN668268.1.1474,0.588760944,co,EU801039.1.1483 (co) FN668268.1.1474,0.02378,Planktophila,magenta1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1791,18to59,JN869030.1.1506,HM856571.1.1445,0.781033825,co,JN869030.1.1506 (co) HM856571.1.1445,0.02141,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1812,26to83,JN868973.1.1510,FN668268.1.1474,0.59411539,co,JN868973.1.1510 (co) FN668268.1.1474,1.004,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1785,18to26,JN869030.1.1506,JN868973.1.1510,0.630658489,co,JN869030.1.1506 (co) JN868973.1.1510,0.5204,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1834,59to83,HM856571.1.1445,FN668268.1.1474,0.640232353,co,HM856571.1.1445 (co) FN668268.1.1474,0.5204,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1787,18to83,JN869030.1.1506,FN668268.1.1474,0.475338608,co,JN869030.1.1506 (co) FN668268.1.1474,0.02142,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1805,26to59,JN868973.1.1510,HM856571.1.1445,0.678670995,co,JN868973.1.1510 (co) HM856571.1.1445,0.52265,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1819,49to83,FN668262.1.1467,FN668268.1.1474,0.640697802,co,FN668262.1.1467 (co) FN668268.1.1474,0.00686,Nanopelagicus,plum1,Nanopelagicus,plum1,Actinobacteria,Actinobacteria,purple3,purple3
+1905,39to59,EU801647.1.1478,HM856571.1.1445,0.642803646,co,EU801647.1.1478 (co) HM856571.1.1445,0.98944,Flavobacterium,grey,Nanopelagicus,plum1,Bacteroidetes,Actinobacteria,grey,purple3
+1903,39to49,EU801647.1.1478,FN668262.1.1467,0.594725188,co,EU801647.1.1478 (co) FN668262.1.1467,0.00922,Flavobacterium,grey,Nanopelagicus,plum1,Bacteroidetes,Actinobacteria,grey,purple3
+1868,52to59,EU803252.1.1450,HM856571.1.1445,0.685366913,co,EU803252.1.1450 (co) HM856571.1.1445,0.50821,basal CaFonsibacter,darkturquoise,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1898,10to18,EU705057.1.1276,JN869030.1.1506,0.525230602,co,EU705057.1.1276 (co) JN869030.1.1506,0.50584,Ralstonia,paleturquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1879,54to59,EU800360.1.1446,HM856571.1.1445,0.696339894,co,EU800360.1.1446 (co) HM856571.1.1445,0.50584,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1705,13to18,EU800571.1.1447,JN869030.1.1506,0.55526554,co,EU800571.1.1447 (co) JN869030.1.1506,0.50968,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1708,13to26,EU800571.1.1447,JN868973.1.1510,0.736816321,co,EU800571.1.1447 (co) JN868973.1.1510,0.00685,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1689,2to83,HM445936.1.1502,FN668268.1.1474,0.723736456,co,HM445936.1.1502 (co) FN668268.1.1474,0.5869,Acinetobacter,paleturquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1712,13to59,EU800571.1.1447,HM856571.1.1445,0.646976273,co,EU800571.1.1447 (co) HM856571.1.1445,0.50809,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1899,10to49,EU705057.1.1276,FN668262.1.1467,0.665441452,co,EU705057.1.1276 (co) FN668262.1.1467,1.0007,Ralstonia,paleturquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1728,6to18,JX448570.1.1261,JN869030.1.1506,0.719158709,co,JX448570.1.1261 (co) JN869030.1.1506,0.51061,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1711,13to49,EU800571.1.1447,FN668262.1.1467,0.648129961,co,EU800571.1.1447 (co) FN668262.1.1467,0.45421,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1732,6to59,JX448570.1.1261,HM856571.1.1445,0.676860788,co,JX448570.1.1261 (co) HM856571.1.1445,0.50824,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1738,53to59,JQ941843.1.1364,HM856571.1.1445,0.731821817,co,JQ941843.1.1364 (co) HM856571.1.1445,0.33926,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1730,6to49,JX448570.1.1261,FN668262.1.1467,0.656343658,co,JX448570.1.1261 (co) FN668262.1.1467,0.00346,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1901,10to59,EU705057.1.1276,HM856571.1.1445,0.581600527,co,EU705057.1.1276 (co) HM856571.1.1445,0.58879,Ralstonia,paleturquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1706,13to83,EU800571.1.1447,FN668268.1.1474,0.462175399,co,EU800571.1.1447 (co) FN668268.1.1474,0.50824,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1729,6to26,JX448570.1.1261,JN868973.1.1510,0.739425838,co,JX448570.1.1261 (co) JN868973.1.1510,0.07485,CaFonsibacter,turquoise1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1788,18to39,JN869030.1.1506,EU801647.1.1478,0.604094021,co,JN869030.1.1506 (co) EU801647.1.1478,0.51208,Nanopelagicus,grey,Flavobacterium,grey,Actinobacteria,Bacteroidetes,purple3,grey
+1806,26to39,JN868973.1.1510,EU801647.1.1478,0.619137434,co,JN868973.1.1510 (co) EU801647.1.1478,0.50635,Nanopelagicus,grey,Flavobacterium,grey,Actinobacteria,Bacteroidetes,purple3,grey
+1696,83to84,FN668268.1.1474,KF441562.1.1494,0.723736456,co,FN668268.1.1474 (co) KF441562.1.1494,0.00345,Nanopelagicus,grey,Flavobacterium,grey,Actinobacteria,Bacteroidetes,purple3,grey
+1815,49to53,FN668262.1.1467,JQ941843.1.1364,0.692295299,co,FN668262.1.1467 (co) JQ941843.1.1364,0.50782,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1814,49to52,FN668262.1.1467,EU803252.1.1450,0.597084681,co,FN668262.1.1467 (co) EU803252.1.1450,0.50824,Nanopelagicus,darkturquoise,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1841,28to88,FN668259.1.1474,GU305856.1.1443,0.428918847,co,FN668259.1.1474 (co) GU305856.1.1443,0.98656,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1833,59to77,HM856571.1.1445,GU574353.1.1321,0.685366913,co,HM856571.1.1445 (co) GU574353.1.1321,0.51049,Nanopelagicus,paleturquoise1,Ralstonia,grey,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1817,49to76,FN668262.1.1467,EU803376.1.1258,0.641804906,co,FN668262.1.1467 (co) EU803376.1.1258,0.50479,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1835,59to101,HM856571.1.1445,EU803786.1.1256,0.732083069,co,HM856571.1.1445 (co) EU803786.1.1256,0.98845,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1818,49to77,FN668262.1.1467,GU574353.1.1321,0.597084681,co,FN668262.1.1467 (co) GU574353.1.1321,0.50972,Nanopelagicus,paleturquoise1,Ralstonia,grey,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1810,26to54,JN868973.1.1510,EU800360.1.1446,0.727922386,co,JN868973.1.1510 (co) EU800360.1.1446,0.5204,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1808,26to52,JN868973.1.1510,EU803252.1.1450,0.554086806,co,JN868973.1.1510 (co) EU803252.1.1450,0.00109,Nanopelagicus,darkturquoise,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1813,26to101,JN868973.1.1510,EU803786.1.1256,0.718277794,co,JN868973.1.1510 (co) EU803786.1.1256,0.50587,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1820,49to88,FN668262.1.1467,GU305856.1.1443,0.660257111,co,FN668262.1.1467 (co) GU305856.1.1443,0.50813,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1809,26to53,JN868973.1.1510,JQ941843.1.1364,0.738505281,co,JN868973.1.1510 (co) JQ941843.1.1364,0.50584,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1811,26to77,JN868973.1.1510,GU574353.1.1321,0.554086806,co,JN868973.1.1510 (co) GU574353.1.1321,0.50824,Nanopelagicus,paleturquoise1,Ralstonia,grey,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1821,49to101,FN668262.1.1467,EU803786.1.1256,0.714988435,co,FN668262.1.1467 (co) EU803786.1.1256,0.50588,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1790,18to54,JN869030.1.1506,EU800360.1.1446,0.745510954,co,JN869030.1.1506 (co) EU800360.1.1446,0.50587,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1789,18to53,JN869030.1.1506,JQ941843.1.1364,0.718278128,co,JN869030.1.1506 (co) JQ941843.1.1364,0.00345,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1792,18to101,JN869030.1.1506,EU803786.1.1256,0.743611497,co,JN869030.1.1506 (co) EU803786.1.1256,0.00326,Nanopelagicus,turquoise1,CaFonsibacter,turquoise1,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1685,2to3,HM445936.1.1502,EU801039.1.1483,NA,co,HM445936.1.1502 (co) EU801039.1.1483,NA,Acinetobacter,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1693,3to84,EU801039.1.1483,KF441562.1.1494,NA,co,EU801039.1.1483 (co) KF441562.1.1494,NA,Planktophila,NA,Flavobacterium,NA,Actinobacteria,Bacteroidetes,NA,NA
+1686,2to84,HM445936.1.1502,KF441562.1.1494,NA,co,HM445936.1.1502 (co) KF441562.1.1494,NA,Acinetobacter,NA,Flavobacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1870,52to84,EU803252.1.1450,KF441562.1.1494,NA,co,EU803252.1.1450 (co) KF441562.1.1494,NA,basal CaFonsibacter,NA,Flavobacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1874,77to84,GU574353.1.1321,KF441562.1.1494,NA,co,GU574353.1.1321 (co) KF441562.1.1494,NA,Ralstonia,NA,Flavobacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1691,3to52,EU801039.1.1483,EU803252.1.1450,NA,co,EU801039.1.1483 (co) EU803252.1.1450,NA,Planktophila,NA,basal CaFonsibacter,NA,Actinobacteria,Proteobacteria,NA,NA
+1692,3to77,EU801039.1.1483,GU574353.1.1321,NA,co,EU801039.1.1483 (co) GU574353.1.1321,NA,Planktophila,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1694,3to10,EU801039.1.1483,EU705057.1.1276,NA,co,EU801039.1.1483 (co) EU705057.1.1276,NA,Planktophila,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1904,39to54,EU801647.1.1478,EU800360.1.1446,NA,co,EU801647.1.1478 (co) EU800360.1.1446,NA,Flavobacterium,NA,CaFonsibacter,NA,Bacteroidetes,Proteobacteria,NA,NA
+1687,2to52,HM445936.1.1502,EU803252.1.1450,NA,co,HM445936.1.1502 (co) EU803252.1.1450,NA,Acinetobacter,NA,basal CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1688,2to77,HM445936.1.1502,GU574353.1.1321,NA,co,HM445936.1.1502 (co) GU574353.1.1321,NA,Acinetobacter,NA,Ralstonia,NA,Proteobacteria,Proteobacteria,NA,NA
+1867,52to77,EU803252.1.1450,GU574353.1.1321,NA,co,EU803252.1.1450 (co) GU574353.1.1321,NA,basal CaFonsibacter,NA,Ralstonia,NA,Proteobacteria,Proteobacteria,NA,NA
+1715,13to76,EU800571.1.1447,EU803376.1.1258,NA,co,EU800571.1.1447 (co) EU803376.1.1258,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1723,6to53,JX448570.1.1261,JQ941843.1.1364,NA,co,JX448570.1.1261 (co) JQ941843.1.1364,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1725,6to76,JX448570.1.1261,EU803376.1.1258,NA,co,JX448570.1.1261 (co) EU803376.1.1258,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1727,6to101,JX448570.1.1261,EU803786.1.1256,NA,co,JX448570.1.1261 (co) EU803786.1.1256,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1731,6to54,JX448570.1.1261,EU800360.1.1446,NA,co,JX448570.1.1261 (co) EU800360.1.1446,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1733,6to88,JX448570.1.1261,GU305856.1.1443,NA,co,JX448570.1.1261 (co) GU305856.1.1443,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1736,53to101,JQ941843.1.1364,EU803786.1.1256,NA,co,JQ941843.1.1364 (co) EU803786.1.1256,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1737,53to54,JQ941843.1.1364,EU800360.1.1446,NA,co,JQ941843.1.1364 (co) EU800360.1.1446,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1739,53to76,JQ941843.1.1364,EU803376.1.1258,NA,co,JQ941843.1.1364 (co) EU803376.1.1258,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1743,76to101,EU803376.1.1258,EU803786.1.1256,NA,co,EU803376.1.1258 (co) EU803786.1.1256,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1878,54to101,EU800360.1.1446,EU803786.1.1256,NA,co,EU800360.1.1446 (co) EU803786.1.1256,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1880,54to76,EU800360.1.1446,EU803376.1.1258,NA,co,EU800360.1.1446 (co) EU803376.1.1258,NA,CaFonsibacter,NA,CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1900,10to52,EU705057.1.1276,EU803252.1.1450,NA,co,EU705057.1.1276 (co) EU803252.1.1450,NA,Ralstonia,NA,basal CaFonsibacter,NA,Proteobacteria,Proteobacteria,NA,NA
+1902,10to77,EU705057.1.1276,GU574353.1.1321,NA,co,EU705057.1.1276 (co) GU574353.1.1321,NA,Ralstonia,NA,Ralstonia,NA,Proteobacteria,Proteobacteria,NA,NA

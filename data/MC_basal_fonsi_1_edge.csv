@@ -1,0 +1,34 @@
+SUID,edge,from,to,av_corr,interaction,name,phydist,from_genus,from_col,to_genus,to_col,from_phyla,to_phyla,from_phyla_col,to_phyla_col
+1870,52to84,EU803252.1.1450,KF441562.1.1494,0.596410162,co,EU803252.1.1450 (co) KF441562.1.1494,0.37513,basal CaFonsibacter,paleturquoise1,Flavobacterium,grey,Proteobacteria,Bacteroidetes,paleturquoise1,grey
+1867,52to77,EU803252.1.1450,GU574353.1.1321,0.71822408,co,EU803252.1.1450 (co) GU574353.1.1321,0.50825,basal CaFonsibacter,paleturquoise1,Ralstonia,grey,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1814,49to52,FN668262.1.1467,EU803252.1.1450,0.597084681,co,FN668262.1.1467 (co) EU803252.1.1450,0.00686,Nanopelagicus,plum1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,grey
+1687,2to52,HM445936.1.1502,EU803252.1.1450,0.596410162,co,HM445936.1.1502 (co) EU803252.1.1450,0.55349,Acinetobacter,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1872,52to89,EU803252.1.1450,AB021390.1.1508,0.596410162,co,EU803252.1.1450 (co) AB021390.1.1508,0.92015,basal CaFonsibacter,paleturquoise1,Acidovorax,grey,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1691,3to52,EU801039.1.1483,EU803252.1.1450,0.596410162,co,EU801039.1.1483 (co) EU803252.1.1450,0.00922,Planktophila,magenta1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1808,26to52,JN868973.1.1510,EU803252.1.1450,0.554086806,co,JN868973.1.1510 (co) EU803252.1.1450,0.34635,Nanopelagicus,plum1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1900,10to52,EU705057.1.1276,EU803252.1.1450,0.705625029,co,EU705057.1.1276 (co) EU803252.1.1450,0.50821,Ralstonia,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1871,52to85,EU803252.1.1450,AB806518.1.1446,0.596410162,co,EU803252.1.1450 (co) AB806518.1.1446,0.38121,basal CaFonsibacter,paleturquoise1,Comamonadaceae,grey,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1869,52to78,EU803252.1.1450,JX015603.1.1441,0.596410162,co,EU803252.1.1450 (co) JX015603.1.1441,0.55496,basal CaFonsibacter,palegreen1,Haptophyceae,palegreen1,Proteobacteria,Cyanobacteria-chloroplast,paleturquoise1,palegreen1
+1868,52to59,EU803252.1.1450,HM856571.1.1445,0.685366913,co,EU803252.1.1450 (co) HM856571.1.1445,0.92162,basal CaFonsibacter,plum1,Nanopelagicus,plum1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+1686,2to84,HM445936.1.1502,KF441562.1.1494,NA,co,HM445936.1.1502 (co) KF441562.1.1494,NA,Acinetobacter,NA,Flavobacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1685,2to3,HM445936.1.1502,EU801039.1.1483,NA,co,HM445936.1.1502 (co) EU801039.1.1483,NA,Acinetobacter,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1688,2to77,HM445936.1.1502,GU574353.1.1321,NA,co,HM445936.1.1502 (co) GU574353.1.1321,NA,Acinetobacter,NA,Ralstonia,NA,Proteobacteria,Proteobacteria,NA,NA
+1891,85to89,AB806518.1.1446,AB021390.1.1508,NA,co,AB806518.1.1446 (co) AB021390.1.1508,NA,Comamonadaceae,NA,Acidovorax,NA,Proteobacteria,Proteobacteria,NA,NA
+1888,78to89,JX015603.1.1441,AB021390.1.1508,NA,co,JX015603.1.1441 (co) AB021390.1.1508,NA,Haptophyceae,NA,Acidovorax,NA,Cyanobacteria-chloroplast,Proteobacteria,NA,NA
+1887,78to85,JX015603.1.1441,AB806518.1.1446,NA,co,JX015603.1.1441 (co) AB806518.1.1446,NA,Haptophyceae,NA,Comamonadaceae,NA,Cyanobacteria-chloroplast,Proteobacteria,NA,NA
+1805,26to59,JN868973.1.1510,HM856571.1.1445,NA,co,JN868973.1.1510 (co) HM856571.1.1445,NA,Nanopelagicus,NA,Nanopelagicus,NA,Actinobacteria,Actinobacteria,NA,NA
+1807,26to49,JN868973.1.1510,FN668262.1.1467,NA,co,JN868973.1.1510 (co) FN668262.1.1467,NA,Nanopelagicus,NA,Nanopelagicus,NA,Actinobacteria,Actinobacteria,NA,NA
+1816,49to59,FN668262.1.1467,HM856571.1.1445,NA,co,FN668262.1.1467 (co) HM856571.1.1445,NA,Nanopelagicus,NA,Nanopelagicus,NA,Actinobacteria,Actinobacteria,NA,NA
+1811,26to77,JN868973.1.1510,GU574353.1.1321,NA,co,JN868973.1.1510 (co) GU574353.1.1321,NA,Nanopelagicus,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1818,49to77,FN668262.1.1467,GU574353.1.1321,NA,co,FN668262.1.1467 (co) GU574353.1.1321,NA,Nanopelagicus,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1833,59to77,HM856571.1.1445,GU574353.1.1321,NA,co,HM856571.1.1445 (co) GU574353.1.1321,NA,Nanopelagicus,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1693,3to84,EU801039.1.1483,KF441562.1.1494,NA,co,EU801039.1.1483 (co) KF441562.1.1494,NA,Planktophila,NA,Flavobacterium,NA,Actinobacteria,Bacteroidetes,NA,NA
+1692,3to77,EU801039.1.1483,GU574353.1.1321,NA,co,EU801039.1.1483 (co) GU574353.1.1321,NA,Planktophila,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1694,3to10,EU801039.1.1483,EU705057.1.1276,NA,co,EU801039.1.1483 (co) EU705057.1.1276,NA,Planktophila,NA,Ralstonia,NA,Actinobacteria,Proteobacteria,NA,NA
+1876,77to89,GU574353.1.1321,AB021390.1.1508,NA,co,GU574353.1.1321 (co) AB021390.1.1508,NA,Ralstonia,NA,Acidovorax,NA,Proteobacteria,Proteobacteria,NA,NA
+1875,77to85,GU574353.1.1321,AB806518.1.1446,NA,co,GU574353.1.1321 (co) AB806518.1.1446,NA,Ralstonia,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+1874,77to84,GU574353.1.1321,KF441562.1.1494,NA,co,GU574353.1.1321 (co) KF441562.1.1494,NA,Ralstonia,NA,Flavobacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1873,77to78,GU574353.1.1321,JX015603.1.1441,NA,co,GU574353.1.1321 (co) JX015603.1.1441,NA,Ralstonia,NA,Haptophyceae,NA,Proteobacteria,Cyanobacteria-chloroplast,NA,NA
+1899,10to49,EU705057.1.1276,FN668262.1.1467,NA,co,EU705057.1.1276 (co) FN668262.1.1467,NA,Ralstonia,NA,Nanopelagicus,NA,Proteobacteria,Actinobacteria,NA,NA
+1901,10to59,EU705057.1.1276,HM856571.1.1445,NA,co,EU705057.1.1276 (co) HM856571.1.1445,NA,Ralstonia,NA,Nanopelagicus,NA,Proteobacteria,Actinobacteria,NA,NA
+1902,10to77,EU705057.1.1276,GU574353.1.1321,NA,co,EU705057.1.1276 (co) GU574353.1.1321,NA,Ralstonia,NA,Ralstonia,NA,Proteobacteria,Proteobacteria,NA,NA

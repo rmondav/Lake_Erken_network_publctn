@@ -1,0 +1,64 @@
+SUID,edge,from,to,av_corr,interaction,name,phydist,from_genus,from_col,to_genus,to_col,from_phyla,to_phyla,from_phyla_col,to_phyla_col
+739,47to197,EU800831.1.1486,GU305784.1.1481,0.595506658,co,EU800831.1.1486 (co) GU305784.1.1481,0.36708,acIV,purple3,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+845,197to211,GU305784.1.1481,AJ575701.1.1473,0.509022811,co,GU305784.1.1481 (co) AJ575701.1.1473,0.38065,basal CaFonsibacter,paleturquoise1,Alcaligenaceae,paleturquoise1,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+832,87to197,FN668020.1.1490,GU305784.1.1481,0.522345154,co,FN668020.1.1490 (co) GU305784.1.1481,0.39485,Comamonadaceae,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1085,182to197,FJ572664.1.1483,GU305784.1.1481,0.400521692,co,FJ572664.1.1483 (co) GU305784.1.1481,0.40099,acIV,purple3,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+940,16to197,HQ860586.1.1449,GU305784.1.1481,-0.4504533,me,HQ860586.1.1449 (me) GU305784.1.1481,0.41026,Limnohabitans,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1119,180to197,AB753922.1.1459,GU305784.1.1481,-0.199032258,me,AB753922.1.1459 (me) GU305784.1.1481,0.42009,Comamonadaceae,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+847,197to225,GU305784.1.1481,FJ936865.1.1487,0.397727447,co,GU305784.1.1481 (co) FJ936865.1.1487,0.43541,basal CaFonsibacter,paleturquoise1,Comamonadaceae,paleturquoise1,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+1160,174to197,GU127206.1.1228,GU305784.1.1481,0.512829968,co,GU127206.1.1228 (co) GU305784.1.1481,0.44058,Oxalobacteraceae,paleturquoise1,basal CaFonsibacter,darkturquoise,Proteobacteria,Proteobacteria,paleturquoise1,paleturquoise1
+848,197to223,GU305784.1.1481,HM129033.1.1447,0.442100501,co,GU305784.1.1481 (co) HM129033.1.1447,0.50835,basal CaFonsibacter,magenta1,Planktophila,magenta1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+723,5to197,EU801039.1.1483,GU305784.1.1481,-0.368966659,me,EU801039.1.1483 (me) GU305784.1.1481,0.51295,Planktophila,magenta1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+949,33to197,AJ536838.1.1378,GU305784.1.1481,0.348088347,co,AJ536838.1.1378 (co) GU305784.1.1481,0.52471,Planktophila,magenta1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+846,197to220,GU305784.1.1481,JX406245.1.1480,0.593200582,co,GU305784.1.1481 (co) JX406245.1.1480,0.52888,basal CaFonsibacter,magenta1,Planktophila,magenta1,Proteobacteria,Actinobacteria,paleturquoise1,purple3
+801,184to197,EU117671.1.1506,GU305784.1.1481,-0.451161126,me,EU117671.1.1506 (me) GU305784.1.1481,0.53884,Planktophila,magenta1,basal CaFonsibacter,darkturquoise,Actinobacteria,Proteobacteria,purple3,paleturquoise1
+1173,108to197,FN668098.1.1488,GU305784.1.1481,0.482883209,co,FN668098.1.1488 (co) GU305784.1.1481,0.62293,Sediminibacterium,grey,basal CaFonsibacter,darkturquoise,Bacteroidetes,Proteobacteria,grey,paleturquoise1
+840,186to197,EF019811.1.1352,GU305784.1.1481,0.529238605,co,EF019811.1.1352 (co) GU305784.1.1481,0.62718,Sediminibacterium,grey,basal CaFonsibacter,darkturquoise,Bacteroidetes,Proteobacteria,grey,paleturquoise1
+1112,120to197,GU305813.1.1469,GU305784.1.1481,0.482559395,co,GU305813.1.1469 (co) GU305784.1.1481,0.65234,Microcystis,palegreen1,basal CaFonsibacter,darkturquoise,Cyanobacteria,Proteobacteria,palegreen1,paleturquoise1
+733,47to120,EU800831.1.1486,GU305813.1.1469,NA,co,EU800831.1.1486 (co) GU305813.1.1469,NA,acIV,NA,Microcystis,NA,Actinobacteria,Cyanobacteria,NA,NA
+735,47to180,EU800831.1.1486,AB753922.1.1459,NA,me,EU800831.1.1486 (me) AB753922.1.1459,NA,acIV,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+737,47to182,EU800831.1.1486,FJ572664.1.1483,NA,co,EU800831.1.1486 (co) FJ572664.1.1483,NA,acIV,NA,acIV,NA,Actinobacteria,Actinobacteria,NA,NA
+738,47to186,EU800831.1.1486,EF019811.1.1352,NA,co,EU800831.1.1486 (co) EF019811.1.1352,NA,acIV,NA,Sediminibacterium,NA,Actinobacteria,Bacteroidetes,NA,NA
+741,47to225,EU800831.1.1486,FJ936865.1.1487,NA,co,EU800831.1.1486 (co) FJ936865.1.1487,NA,acIV,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+1087,182to220,FJ572664.1.1483,JX406245.1.1480,NA,co,FJ572664.1.1483 (co) JX406245.1.1480,NA,acIV,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+1088,182to223,FJ572664.1.1483,HM129033.1.1447,NA,co,FJ572664.1.1483 (co) HM129033.1.1447,NA,acIV,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+1198,211to220,AJ575701.1.1473,JX406245.1.1480,NA,co,AJ575701.1.1473 (co) JX406245.1.1480,NA,Alcaligenaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1199,211to223,AJ575701.1.1473,HM129033.1.1447,NA,co,AJ575701.1.1473 (co) HM129033.1.1447,NA,Alcaligenaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+827,87to174,FN668020.1.1490,GU127206.1.1228,NA,co,FN668020.1.1490 (co) GU127206.1.1228,NA,Comamonadaceae,NA,Oxalobacteraceae,NA,Proteobacteria,Proteobacteria,NA,NA
+828,87to180,FN668020.1.1490,AB753922.1.1459,NA,me,FN668020.1.1490 (me) AB753922.1.1459,NA,Comamonadaceae,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+830,87to186,FN668020.1.1490,EF019811.1.1352,NA,co,FN668020.1.1490 (co) EF019811.1.1352,NA,Comamonadaceae,NA,Sediminibacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+833,87to220,FN668020.1.1490,JX406245.1.1480,NA,co,FN668020.1.1490 (co) JX406245.1.1480,NA,Comamonadaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+834,87to223,FN668020.1.1490,HM129033.1.1447,NA,co,FN668020.1.1490 (co) HM129033.1.1447,NA,Comamonadaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+835,87to225,FN668020.1.1490,FJ936865.1.1487,NA,co,FN668020.1.1490 (co) FJ936865.1.1487,NA,Comamonadaceae,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+838,87to211,FN668020.1.1490,AJ575701.1.1473,NA,co,FN668020.1.1490 (co) AJ575701.1.1473,NA,Comamonadaceae,NA,Alcaligenaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+1115,180to182,AB753922.1.1459,FJ572664.1.1483,NA,me,AB753922.1.1459 (me) FJ572664.1.1483,NA,Comamonadaceae,NA,acIV,NA,Proteobacteria,Actinobacteria,NA,NA
+1116,180to220,AB753922.1.1459,JX406245.1.1480,NA,me,AB753922.1.1459 (me) JX406245.1.1480,NA,Comamonadaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1117,180to223,AB753922.1.1459,HM129033.1.1447,NA,me,AB753922.1.1459 (me) HM129033.1.1447,NA,Comamonadaceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1118,180to225,AB753922.1.1459,FJ936865.1.1487,NA,me,AB753922.1.1459 (me) FJ936865.1.1487,NA,Comamonadaceae,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+933,16to33,HQ860586.1.1449,AJ536838.1.1378,NA,me,HQ860586.1.1449 (me) AJ536838.1.1378,NA,Limnohabitans,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+934,16to47,HQ860586.1.1449,EU800831.1.1486,NA,me,HQ860586.1.1449 (me) EU800831.1.1486,NA,Limnohabitans,NA,acIV,NA,Proteobacteria,Actinobacteria,NA,NA
+936,16to87,HQ860586.1.1449,FN668020.1.1490,NA,me,HQ860586.1.1449 (me) FN668020.1.1490,NA,Limnohabitans,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+941,16to223,HQ860586.1.1449,HM129033.1.1447,NA,me,HQ860586.1.1449 (me) HM129033.1.1447,NA,Limnohabitans,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+943,16to180,HQ860586.1.1449,AB753922.1.1459,NA,co,HQ860586.1.1449 (co) AB753922.1.1459,NA,Limnohabitans,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+1111,120to186,GU305813.1.1469,EF019811.1.1352,NA,co,GU305813.1.1469 (co) EF019811.1.1352,NA,Microcystis,NA,Sediminibacterium,NA,Cyanobacteria,Bacteroidetes,NA,NA
+1155,174to180,GU127206.1.1228,AB753922.1.1459,NA,me,GU127206.1.1228 (me) AB753922.1.1459,NA,Oxalobacteraceae,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+1156,174to184,GU127206.1.1228,EU117671.1.1506,NA,me,GU127206.1.1228 (me) EU117671.1.1506,NA,Oxalobacteraceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1157,174to186,GU127206.1.1228,EF019811.1.1352,NA,co,GU127206.1.1228 (co) EF019811.1.1352,NA,Oxalobacteraceae,NA,Sediminibacterium,NA,Proteobacteria,Bacteroidetes,NA,NA
+1158,174to220,GU127206.1.1228,JX406245.1.1480,NA,co,GU127206.1.1228 (co) JX406245.1.1480,NA,Oxalobacteraceae,NA,Planktophila,NA,Proteobacteria,Actinobacteria,NA,NA
+1159,174to225,GU127206.1.1228,FJ936865.1.1487,NA,co,GU127206.1.1228 (co) FJ936865.1.1487,NA,Oxalobacteraceae,NA,Comamonadaceae,NA,Proteobacteria,Proteobacteria,NA,NA
+718,5to87,EU801039.1.1483,FN668020.1.1490,NA,me,EU801039.1.1483 (me) FN668020.1.1490,NA,Planktophila,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+720,5to184,EU801039.1.1483,EU117671.1.1506,NA,co,EU801039.1.1483 (co) EU117671.1.1506,NA,Planktophila,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+721,5to186,EU801039.1.1483,EF019811.1.1352,NA,me,EU801039.1.1483 (me) EF019811.1.1352,NA,Planktophila,NA,Sediminibacterium,NA,Actinobacteria,Bacteroidetes,NA,NA
+726,5to223,EU801039.1.1483,HM129033.1.1447,NA,me,EU801039.1.1483 (me) HM129033.1.1447,NA,Planktophila,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+766,220to223,JX406245.1.1480,HM129033.1.1447,NA,co,JX406245.1.1480 (co) HM129033.1.1447,NA,Planktophila,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+767,220to225,JX406245.1.1480,FJ936865.1.1487,NA,co,JX406245.1.1480 (co) FJ936865.1.1487,NA,Planktophila,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+768,223to225,HM129033.1.1447,FJ936865.1.1487,NA,co,HM129033.1.1447 (co) FJ936865.1.1487,NA,Planktophila,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+797,184to186,EU117671.1.1506,EF019811.1.1352,NA,me,EU117671.1.1506 (me) EF019811.1.1352,NA,Planktophila,NA,Sediminibacterium,NA,Actinobacteria,Bacteroidetes,NA,NA
+802,184to211,EU117671.1.1506,AJ575701.1.1473,NA,me,EU117671.1.1506 (me) AJ575701.1.1473,NA,Planktophila,NA,Alcaligenaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+805,184to223,EU117671.1.1506,HM129033.1.1447,NA,me,EU117671.1.1506 (me) HM129033.1.1447,NA,Planktophila,NA,Planktophila,NA,Actinobacteria,Actinobacteria,NA,NA
+806,184to225,EU117671.1.1506,FJ936865.1.1487,NA,me,EU117671.1.1506 (me) FJ936865.1.1487,NA,Planktophila,NA,Comamonadaceae,NA,Actinobacteria,Proteobacteria,NA,NA
+841,186to211,EF019811.1.1352,AJ575701.1.1473,NA,co,EF019811.1.1352 (co) AJ575701.1.1473,NA,Sediminibacterium,NA,Alcaligenaceae,NA,Bacteroidetes,Proteobacteria,NA,NA
+842,186to225,EF019811.1.1352,FJ936865.1.1487,NA,co,EF019811.1.1352 (co) FJ936865.1.1487,NA,Sediminibacterium,NA,Comamonadaceae,NA,Bacteroidetes,Proteobacteria,NA,NA
+843,186to220,EF019811.1.1352,JX406245.1.1480,NA,co,EF019811.1.1352 (co) JX406245.1.1480,NA,Sediminibacterium,NA,Planktophila,NA,Bacteroidetes,Actinobacteria,NA,NA
+844,186to223,EF019811.1.1352,HM129033.1.1447,NA,co,EF019811.1.1352 (co) HM129033.1.1447,NA,Sediminibacterium,NA,Planktophila,NA,Bacteroidetes,Actinobacteria,NA,NA
+1174,108to120,FN668098.1.1488,GU305813.1.1469,NA,co,FN668098.1.1488 (co) GU305813.1.1469,NA,Sediminibacterium,NA,Microcystis,NA,Bacteroidetes,Cyanobacteria,NA,NA
