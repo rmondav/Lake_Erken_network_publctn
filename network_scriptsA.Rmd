@@ -1,0 +1,357 @@
+---
+title: "Network analyses"
+knit: (function(input_file, encoding) {
+  out_dir <- '.';
+  rmarkdown::render(input_file,
+  encoding=encoding,
+  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+author: "rhiannon mondav"
+date: "08/09/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+r <- getOption("repos")
+r["CRAN"] <-"https://mirrors.dotsrc.org/cran/"
+options(repos = r)
+
+## install required packages
+if(!require(huge)){
+  install.packages("huge")
+}
+if(!require(prabclus)){
+  install.packages("prabclus")
+}
+if(!require(psych)){
+  install.packages("psych")
+}
+if(!require(vegan)){
+  install.packages("vegan")
+}
+if(!require(igraph)){
+  install.packages("igraph")
+}
+if(!require(rsparcc)){
+  install.packages("rsparcc")
+}
+#library(devtools)
+#install_github("MPBA/r-sparcc")
+if(!require(SpiecEasi)){
+  install.packages("SpiecEasi")
+}
+#install_github("zdk123/SpiecEasi")
+if(!require(Matrix)){
+  install.packages("Matrix")
+}
+```
+
+```{r}
+time_series <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/time_series.txt", row.names=1)
+N1500_TS <- read.delim("./Mondav_etal_2020_Erken_network/data/N1500_time_series.txt", row.names=1)
+N1500_TS_n150s29 <- read.delim("./Mondav_etal_2020_Erken_network/data/N1500_time_series_n150s29.txt", row.names=1)
+##looking at species richness sort of
+library(vegan)
+TSt<-t(time_series) #sparcity = 94%
+invsimpTSt<-diversity(TSt,"invsimpson")
+mean(invsimpTSt);min(invsimpTSt);max(invsimpTSt) #22, 1, 71
+N1500_TSt<-t(N1500_TS) #sparcity = 95%
+invsimpN1500_TSt<-diversity(N1500_TSt,index = "invsimpson")
+mean(invsimpN1500_TSt);min(invsimpN1500_TSt);max(invsimpN1500_TSt) #22, 1, 69
+N1500_TS_n150s29t<-t(N1500_TS_n150s29) #sparcity = 49%
+invsimpN1500_TS_n150s29t<-diversity(N1500_TS_n150s29t,index = "invsimpson")
+mean(invsimpN1500_TS_n150s29t);min(invsimpN1500_TS_n150s29t)
+max(invsimpN1500_TS_n150s29t) #17, 1, 48
+```
+
+
+#####time-series network analysis#####
+##pearson correlations
+```{r}
+##pearson correlations with adjustments for multiple testing
+library(psych)
+Pearson_n150s29<-
+  corr.test(N1500_TS_n150s29t, method="pearson", adjust="BH", alpha=0.05, ci=F)
+
+##extracting pearson correlation values from matrix
+Pcorr_mat<-as.matrix(Pearson_n150s29$r)
+library(igraph)
+Pcorr_mat.adj=
+  graph.adjacency(Pcorr_mat,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+Pcorr_list<-get.data.frame(Pcorr_mat.adj)
+##subsetting to only those with at least weak correlations
+Pcorr_list_rdcd<-subset(Pcorr_list, weight>0.3 | weight<(-0.3))
+write.table(Pcorr_list_rdcd, col.names=T,sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/Pcorr_list.txt")
+
+##getting pval adj as list from matrix
+Ppval_matrix<-as.matrix(Pearson_n150s29$p)
+Ppval_matrix.adj=
+  graph.adjacency(Ppval_matrix,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+Ppval_list<-get.data.frame(Ppval_matrix.adj)
+write.table(Ppval_list,col.names = T,sep ='\t',quote=FALSE,
+            file ="./Mondav_etal_2020_Erken_network/data/Ppval.txt")
+
+##combine corr and pval data and upload back to R
+Pcorr_Ppval<-read.delim("./Mondav_etal_2020_Erken_network/data/Pcorr_Ppval.txt")
+Pcorr_Ppval_rdcd<-subset(Pcorr_Ppval, Ppval<0.05)
+pearson_edges<-Pcorr_Ppval_rdcd$edge 
+length(pearson_edges) #2176
+
+##cleanup
+rm(Pcorr_mat);rm(Pcorr_mat.adj);rm(Pcorr_list);rm(Ppval_mat);rm(Ppval_mat.adj)
+##these analyses are rough on Rstudio so there's a save script after each section
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
+
+#######SparCC#######
+##SparCC in R using normal parameters and comparing to null model
+```{r}
+##run correlation with 100 iterations and sequential exclusion of top ten dominant
+library(rsparcc)
+sparcc_n150s29<-sparcc(N1500_TS_n150s29t, max.iter=100, th=0.1, exiter=10)
+##run bootstrap for pval generation with 100 iterations 
+library(SpiecEasi)
+sparccboot_n150s29<-sparccboot(N1500_TS_n150s29t, R=100)
+##run bootstrap to get pseudo pvals
+sparccboot_pseudo_n150s29<-pval.sparccboot(sparccboot_n150s29, sided = "both")
+##make data accessible
+sparcc_n150s29df<-as.data.frame(sparcc_n150s29$CORR)
+sparcc_corr.adj=
+  graph.adjacency(as.matrix(sparcc_n150s29df),mode="undirected",
+                  weighted=TRUE,diag=FALSE,add.colnames=TRUE)
+sparcc_corr_list<-get.data.frame(sparcc_corr.adj)
+write.table(sparcc_corr_list,col.names = T,quote=FALSE,sep ='\t',
+            file = "./Mondav_etal_2020_Erken_network/data/sparcc_corr.txt")
+sparccboot_pseudo_n150s29df<-as.data.frame(sparccboot_pseudo_n150s29)
+write.table(sparccboot_pseudo_n150s29df,col.names = T,sep ='\t',quote=FALSE,
+            file = "./Mondav_etal_2020_Erken_network/data/sparcc_Ppvals.txt")
+
+##upload manually combined data
+SparCC_list<- 
+  read.delim("./Mondav_etal_2020_Erken_network/data/sparcc_corr_pval.txt")
+SparCC_list_rdcd<-subset(SparCC_list, sCC_corr>0.3 | sCC_corr<(-0.3))
+SparCC_list_rdcd<-subset(SparCC_list_rdcd, sCC_pval<0.05)
+write.table(SparCC_list_rdcd,col.names = T,sep ='\t',quote=FALSE,
+            file = "./Mondav_etal_2020_Erken_network/data/sparcc_corr_pval_rdcd.txt")
+sparcc_edges<-SparCC_list_rdcd$edge 
+length(sparcc_edges) #480
+
+##cleanup
+rm(sparccboot_n150s29);rm(sparcc_n150s29df);rm(sparcc_corr.adj);rm(sparcc_corr_list)
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
+
+#######spiec.easi#######
+```{r}
+##getting neighbourhood selection based network using spiec-easi
+library(SpiecEasi);library(huge);library(Matrix)
+spieceasy50_n150s29<-spiec.easi(N1500_TS_n150s29t, method="mb", sel.criterion="stars",lambda.min.ratio=1e-2, nlambda=20, icov.select.params=list(rep.num=50))
+edge.weighted<-summary(symBeta(getOptBeta(spieceasy50_n150s29), 'maxabs'))
+write.table(edge.weighted, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/spieceasi_edge.weighted.txt")
+spieceasi_list<-read.delim("./Mondav_etal_2020_Erken_network/data/spieceasi_edge.weighted.txt")
+spcE_edges<-spieceasi_list$edge 
+length(spcE_edges) #532
+detach("package:SpiecEasi", unload=TRUE)
+
+##cleanup
+rm(edge.weighted)
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
+
+#######network#######
+```{r}
+##checking edges in at least two
+atleasttwo<-union(sparcc_pears,spE_pears)
+atleasttwo<-union(atleasttwo,spE_sparcc)
+length(atleasttwo) #625
+##write list of edges to use for collation
+write.table(atleasttwo, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/pears_sparcc_spE_union.txt")
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
+
+####################################
+###### mixed cultures network ######
+####################################
+```{r}
+library(psych)
+library(vegan)
+N500_MC_ns <- 
+  read.delim("./Mondav_etal_2020_Erken_network/data/N500_mixed_cultures.txt", row.names=1)
+##looking at species richness
+N500_MC_nst<-t(N500_MC_ns)
+N500_invsimpMC_nst<-diversity(N500_MC_nst,index = "invsimpson")
+mean(N500_invsimpMC_nst);min(N500_invsimpMC_nst);max(N500_invsimpMC_nst) #3, 1, 6 
+```
+
+#######pearson#######
+```{r}
+##pearson correlations with adjustments for multiple testing
+library(psych)
+library(igraph)
+Pearson_N500_MCnst<-
+  corr.test(N500_MC_nst, method="pearson", adjust="BH", alpha=0.05, ci=F)
+Pcorr_N500_MCnstmat<-as.matrix(Pearson_N500_MCnst$r)
+Pcorr_N500_MCnstmat.adj=
+  graph.adjacency(Pcorr_N500_MCnstmat,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+Pcorr_N500_MCnslist<-get.data.frame(Pcorr_N500_MCnstmat.adj)
+##reduce data set to those with semi-reasonable corrs
+Pcorr_N500_MCnslist_rdcd<-subset(Pcorr_N500_MCnslist, weight>0.3 | weight<(-0.3))
+names(Pcorr_N500_MCnslist_rdcd)[3]<-paste("Pcorr")
+write.table(Pcorr_N500_MCnslist_rdcd, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/Pcorr_N500_MCnslist_rdcd.txt")
+##get pvals and write out too
+Ppval_N500_MCnsmat<-as.matrix(Pearson_N500_MCnst$p)
+Ppval_N500_MCnsmat.adj=
+  graph.adjacency(Ppval_N500_MCnsmat,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+Ppval_N500_MCnslist<-get.data.frame(Ppval_N500_MCnsmat.adj)
+names(Ppval_N500_MCnslist)[3]<-paste("Ppval")
+write.table(Ppval_N500_MCnslist, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/Ppval_N500_MCnslist.txt")
+##read back in and reduce further for use
+Pcorr_N500_MCnslist_rdcd <- read.delim("./Mondav_etal_2020_Erken_network/data/Pcorr_N500_MCnslist_rdcd.txt")
+Pcorr_N500_MCnslist_rdcd<-subset(Pcorr_N500_MCnslist_rdcd, Ppval<0.05)
+write.table(Pcorr_N500_MCnslist_rdcd, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/Pcorr_N500_MCnslist_rdcd.txt")
+##cleanup
+rm(Pcorr_N500_MCnstmat); rm(Pcorr_N500_MCnstmat.adj)
+rm(Ppval_N500_MCnsmat); rm(Ppval_N500_MCnsmat.adj)
+rm(Ppval_N500_MCnslist)
+```
+
+#######spiec.easi#######
+```{r}
+getting neighbourhood selection based network using spiec-easi
+library(SpiecEasi);library(huge);library(Matrix)
+spieceasy_N500_MCnst<-spiec.easi(N500_MC_nst, method="mb", sel.criterion="stars",lambda.min.ratio=1e-2, nlambda=20, icov.select.params=list(rep.num=50))
+edge.weighted_N500_MCnst<-summary(symBeta(getOptBeta(spieceasy_N500_MCnst), 'maxabs'))
+write.table(edge.weighted_N500_MCnst, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/spieceasi_edge.weighted_N500_MCns.txt")
+spieceasi_N500_MCns<- 
+  read.delim("./Mondav_etal_2020_Erken_network/data/spieceasi_edge.weighted_N500_MCns.txt")
+```
+
+
+```{r}
+##using binary suitable methods for correlation:- Dice-Sörensen
+##both metrics do not consider 0,0 ie both absent pairs so should not 
+##be (as) affected by false absence
+library(prabclus)
+##data prep
+N500_MC_nst_bin<-N500_MC_nst
+N500_MC_nst_bin[N500_MC_nst>0]<-1
+##getting Dice coincidence distance'1-correlation'
+dice_N500_MC_nst_bin<-dicedist(N500_MC_nst_bin)
+dice_N500_MC_nst_bin<-as.data.frame(dice_N500_MC_nst_bin)
+dice_N500_MC_nst_binm<-
+  as.matrix.data.frame(dice_N500_MC_nst_bin,rownames.force=T)
+##get the Coincidence index from the distance index matrix
+dice_N500_MC_nst_binmCI<-1-dice_N500_MC_nst_binm
+##get pvalues for CIndex
+dice_N500_MC_nst_bin_p<-
+  corr.p(dice_N500_MC_nst_binmCI,142,adjust="BH",alpha=.05)
+##convert to usable format
+dice_N500_MC_nst<-as.matrix(dice_N500_MC_nst_bin_p$r)
+dice_N500_MC_nst.adj=
+  graph.adjacency(dice_N500_MC_nst,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+dice_N500_MC_nstlist<-get.data.frame(dice_N500_MC_nst.adj)
+names(dice_N500_MC_nstlist)[3]<-paste("Dcorr")
+##reduce to those with higher prob of not being chance
+dice_N500_MC_nstlist_rdcd<-subset(dice_N500_MC_nstlist, Dcorr>=0.5)
+write.table(dice_N500_MC_nstlist_rdcd,col.names = T,sep ='\t',quote=FALSE,
+            file = "./Mondav_etal_2020_Erken_network/data/dice_N500_MC_nstlist_rdcd.txt")
+
+##extract pvals and make useful
+dice_N500_MC_nst_pval<-as.matrix(dice_N500_MC_nst_bin_p$p)
+dice_N500_MC_nst_pval.adj=
+  graph.adjacency(dice_N500_MC_nst_pval,mode="undirected",weighted=TRUE,
+                  diag=FALSE,add.colnames=TRUE)
+dice_N500_MC_nst_pvallist<-get.data.frame(dice_N500_MC_nst_pval.adj)
+names(dice_N500_MC_nst_pvallist)[3]<-paste("Dpval")
+write.table(dice_N500_MC_nst_pvallist,col.names = T,sep ='\t',quote=FALSE,
+            file = "./Mondav_etal_2020_Erken_network/data/dice_N500_MC_nst_pvallist.txt")
+
+##read back in and reduce
+dice_N500_MC_nstlist_rdcd <- read.delim("./Mondav_etal_2020_Erken_network/data/dice_N500_MC_nstlist_rdcd.txt")
+dice_N500_MC_nstlist_rdcd<-subset(dice_N500_MC_nstlist_rdcd, Dpval<0.05)
+#write.table(dice_N500_MC_nstlist_rdcd,col.names = T,file = "dice_N500_MC_nstlist_rdcd.txt",sep ='\t',quote=FALSE)
+##cleanup
+rm(dice_N500_MC_nst_bin); rm(dice_N500_MC_nst_binm); rm(dice_N500_MC_nst_pval)
+rm(dice_N500_MC_nst); rm(dice_N500_MC_nst.adj); rm(dice_N500_MC_nstlist)
+rm(dice_N500_MC_nst_pval.adj); rm(dice_N500_MC_nst_pvallist)
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+```
+
+```{r}
+##get lists of edges
+pearson_N500_MCns_edges<-Pcorr_N500_MCnslist_rdcd$edge
+length(pearson_N500_MCns_edges) #516
+spiecE_N500_MCns_edges<-spieceasi_N500_MCns$edge
+length(spiecE_N500_MCns_edges) #91
+dice_N500_MC_ns_edges<-dice_N500_MC_nstlist_rdcd$edge
+length(dice_N500_MC_ns_edges) #318
+##unions of paired intersects
+edges_in_two_N500<-union(dice_pears_N500_MCns,spE_P_N500_MCns) 
+length(edges_in_two_N150)#252
+edges_in_two_N500<-union(dice_spiecE_N500_MCns,edges_in_two_N500)
+length(edges_in_two_N500) #252
+##write to file for collation and to make network in cytoscape
+write.table(edges_in_two_N500, col.names=T, sep ='\t', quote=FALSE,
+            file="./Mondav_etal_2020_Erken_network/data/union_in_two_N500_MCns.txt")
+savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
+
+
+#######assortativity#######
+```{r}
+##readin data and make edge lists
+TS_union <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/pears_sparcc_spE_union.txt")
+TS_union_edges<-TS_union[c("from_name", "to_name")]
+TS_union_edges<-as.matrix(TS_union_edges)
+TS_nodes <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/timeseries_nodes.txt", row.names=1)
+
+MC_union <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/union_in_two_N500_MCns.txt")
+MC_union_edges<-MC_union[c("from_name", "to_name")]
+MC_union_edges<-as.matrix(MC_union_edges)
+MC_nodes <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/mixedculture_nodes.txt", row.names=1)
+
+
+##convert edge lists to igraph object
+TS_union_g<-graph_from_data_frame(TS_union_edges,directed=F,vertices=TS_nodes)
+MC_union_g<-graph_from_data_frame(MC_union_edges,directed=F,vertices=MC_nodes)
+##Table S3
+##calculate assortativity at each taxanomic level
+assortativity_nominal(TS_union_g, types=TS_nodes$species,directed = F)
+assortativity_nominal(TS_union_g, types=TS_nodes$genus,directed = F)
+assortativity_nominal(TS_union_g, types=TS_nodes$family,directed = F)
+assortativity_nominal(TS_union_g, types=TS_nodes$order,directed = F)
+assortativity_nominal(TS_union_g, types=TS_nodes$class,directed = F)
+assortativity_nominal(TS_union_g, types=TS_nodes$phylum,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$species,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$genus,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$family,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$order,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$class,directed = F)
+assortativity_nominal(MC_union_g, types=MC_nodes$phylum,directed = F)
+##analysis problematic below maybe family level
+##as it relies on uniform taxonomic assignment at each level tested
+##therefore also use PD as a less subjective measure of assortativity
+```
+```
