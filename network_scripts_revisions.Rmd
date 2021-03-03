@@ -1,16 +1,12 @@
 ---
-title: "Network analyses"
-knit: (function(input_file, encoding) {
-  out_dir <- '.';
-  rmarkdown::render(input_file,
-  encoding=encoding,
-  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
-author: "rhiannon mondav"
-date: "08/09/2017"
+title: "network_scripts_revisions"
+author: "RMondav"
+date: "10/06/2020"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 r <- getOption("repos")
 r["CRAN"] <-"https://mirrors.dotsrc.org/cran/"
 options(repos = r)
@@ -43,8 +39,13 @@ if(!require(SpiecEasi)){
 if(!require(Matrix)){
   install.packages("Matrix")
 }
+install.packages("VennDiagram")
+library(VennDiagram)
 ```
 
+
+##correlation analyses and reduction of resultant co-occurance network
+##for Figure S4 (a subset of which is Figure 2)
 ```{r}
 time_series <-
   read.delim("./Mondav_etal_2020_Erken_network/data/time_series.txt", row.names=1)
@@ -63,7 +64,6 @@ invsimpN1500_TS_n150s29t<-diversity(N1500_TS_n150s29t,index = "invsimpson")
 mean(invsimpN1500_TS_n150s29t);min(invsimpN1500_TS_n150s29t)
 max(invsimpN1500_TS_n150s29t) #17, 1, 48
 ```
-
 
 #####time-series network analysis#####
 ##pearson correlations
@@ -174,8 +174,6 @@ length(atleasttwo) #625
 ##write list of edges to use for collation
 write.table(atleasttwo, col.names=T, sep ='\t', quote=FALSE,
             file="./Mondav_etal_2020_Erken_network/data/pears_sparcc_spE_union.txt")
-savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
-save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
 ```
 
 ####################################
@@ -189,7 +187,7 @@ N500_MC_ns <-
 ##looking at species richness
 N500_MC_nst<-t(N500_MC_ns)
 N500_invsimpMC_nst<-diversity(N500_MC_nst,index = "invsimpson")
-mean(N500_invsimpMC_nst);min(N500_invsimpMC_nst);max(N500_invsimpMC_nst) #3, 1, 6 
+mean(N500_invsimpMC_nst);min(N500_invsimpMC_nst);max(N500_invsimpMC_nst)
 ```
 
 #######pearson#######
@@ -231,7 +229,7 @@ rm(Ppval_N500_MCnslist)
 
 #######spiec.easi#######
 ```{r}
-getting neighbourhood selection based network using spiec-easi
+##getting neighbourhood selection based network using spiec-easi
 library(SpiecEasi);library(huge);library(Matrix)
 spieceasy_N500_MCnst<-spiec.easi(N500_MC_nst, method="mb", sel.criterion="stars",lambda.min.ratio=1e-2, nlambda=20, icov.select.params=list(rep.num=50))
 edge.weighted_N500_MCnst<-summary(symBeta(getOptBeta(spieceasy_N500_MCnst), 'maxabs'))
@@ -294,6 +292,7 @@ save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
 savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
 ```
 
+
 ```{r}
 ##get lists of edges
 pearson_N500_MCns_edges<-Pcorr_N500_MCnslist_rdcd$edge
@@ -307,15 +306,14 @@ edges_in_two_N500<-union(dice_pears_N500_MCns,spE_P_N500_MCns)
 length(edges_in_two_N150)#252
 edges_in_two_N500<-union(dice_spiecE_N500_MCns,edges_in_two_N500)
 length(edges_in_two_N500) #252
+##final network for Figure S4
 ##write to file for collation and to make network in cytoscape
 write.table(edges_in_two_N500, col.names=T, sep ='\t', quote=FALSE,
             file="./Mondav_etal_2020_Erken_network/data/union_in_two_N500_MCns.txt")
-savehistory("./Mondav_etal_2020_Erken_network/data/erken_network.Rhistory")
-save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
 ```
 
-
 #######assortativity#######
+## Table S3
 ```{r}
 ##readin data and make edge lists
 TS_union <-
@@ -354,4 +352,231 @@ assortativity_nominal(MC_union_g, types=MC_nodes$phylum,directed = F)
 ##as it relies on uniform taxonomic assignment at each level tested
 ##therefore also use PD as a less subjective measure of assortativity
 ```
+
+##comparison of prevalence and abundance in timeseries
+##compared to mixed cultures
+##Table S4
+```{r}
+TS_vs_MC <- read.csv("./Mondav_etal_2020_Erken_network/data/TS_vs_MC.csv")
+#TS_vs_MC <- read.csv("~/Documents/2019/erken_amplicons_mac_workingdir/454_run3_100erk/end_nov/TS_vs_MC.csv")
+library(psych)
+detach("package:scales", unload=TRUE)
+sumTSvsMC<-corr.test(TS_vs_MC$sum_TS,TS_vs_MC$sum_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC
+plot(TS_vs_MC$sum_TS~TS_vs_MC$sum_MC)
+sumTSvsMC<-corr.test(TS_vs_MC$sum_TS,TS_vs_MC$sum_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC_p<-corr.test(TS_vs_MC$sum_TS,TS_vs_MC$sum_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC_p
+sumTSvsMC_p<-corr.test(TS_vs_MC$no_samples_TS,TS_vs_MC$samples_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC_p
+sumTSvsMC_p<-corr.test(TS_vs_MC$av_TS,TS_vs_MC$av_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC_p
+sumTSvsMC_p<-corr.test(TS_vs_MC$av_TS,TS_vs_MC$av_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sumTSvsMC_p
+sum_TSvsMC_p<-corr.test(TS_vs_MC$sum_TS,TS_vs_MC$sum_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+sum_TSvsMC_p
+no_TSvsMC_p<-corr.test(TS_vs_MC$no_samples_TS,TS_vs_MC$samples_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+no_TSvsMC_p
+av_TSvsMC_p<-corr.test(TS_vs_MC$av_TS,TS_vs_MC$av_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+av_TSvsMC_p
+pcnt_TSvsMC_p<-corr.test(TS_vs_MC$pcntSamples_TS,TS_vs_MC$pcntSamples_MC,method= "pearson",adjust = "BH",alpha = 0.001,ci=F)
+pcnt_TSvsMC_p
+```
+a look at the sharing of OTUs and taxa accross the 1° cohorts
+```{r}
+##get names of OTUs
+TS_nano_nodes<-TS_Nanopel_1_node$label
+length(TS_nano_nodes) #31
+MC_nano_nodes<-MC_Nanopel_1_node$label
+length(MC_nano_nodes) #20
+TS_plankt_nodes<-TS_Planktop_1_node$label
+length(TS_plankt_nodes) #53
+MC_plankt_nodes<-MC_Planktop_1_node$label
+length(MC_plankt_nodes) #8
+TS_Cafonsi_nodes<-TS_Cafonsi_1_node$label
+length(TS_Cafonsi_nodes) #25
+MC_Cafonsi_nodes<-MC_Cafonsi_1_node$label
+length(MC_Cafonsi_nodes) #23
+TS_basal_fonsi_nodes<-TS_basal_fonsi_1_node$label
+length(TS_basal_fonsi_nodes) #17
+MC_basal_fonsi_nodes<-MC_basal_fonsi_1_node$label
+length(MC_basal_fonsi_nodes) #12
+
+##get nodes that are in both TS and MC 1° cohorts
+same_nano<-intersect(TS_nano_nodes,MC_nano_nodes)
+length(same_nano) #9
+##get nodes that are in both TS and MC planktophila 1° cohorts
+same_plankt<-intersect(TS_plankt_nodes,MC_plankt_nodes)
+length(same_plankt) #2
+same_Cafonsi<-intersect(TS_Cafonsi_nodes,MC_Cafonsi_nodes)
+length(same_Cafonsi) #10
+same_basal_fonsi<-intersect(TS_basal_fonsi_nodes,MC_basal_fonsi_nodes)
+length(same_basal_fonsi) #1
+
+##compare across TS network
+## TS plankto vs nano
+same_nano_plankt_TS<-intersect(TS_plankt_nodes,TS_nano_nodes)
+length(same_nano_plankt_TS) #18
+## TS plankto vs fonsi
+same_plankt_Cafonsi_TS<-intersect(TS_plankt_nodes,TS_Cafonsi_nodes)
+length(same_plankt_Cafonsi_TS) #7
+## TS plankto vs basal
+same_basal_plankt_TS<-intersect(TS_basal_fonsi_nodes,TS_plankt_nodes)
+length(same_basal_plankt_TS) #14
+## TS nano vs fonsi
+same_nano_Cafonsi_TS<-intersect(TS_Cafonsi_nodes,TS_nano_nodes)
+length(same_nano_Cafonsi_TS) #7
+## TS nano vs basal
+same_basal_nano_TS<-intersect(TS_basal_fonsi_nodes,TS_nano_nodes)
+length(same_basal_nano_TS) #3
+## TS fonsi vs basal
+same_basal_Cafonsi_TS<-intersect(TS_Cafonsi_nodes,TS_basal_fonsi_nodes)
+length(same_basal_Cafonsi_TS) #3
+##TS plankto, nano, fonsi
+same_nano_plankt_fonsi_TS<-intersect(same_nano_plankt_TS,TS_Cafonsi_nodes)
+same_nano_plankt_TS
+same_plankt_Cafonsi_TS
+same_nano_Cafonsi_TS
+same_nano_plankt_fonsi_TS
+setdiff(TS_Cafonsi_nodes,TS_nano_nodes)
+setdiff(TS_nano_nodes,TS_Cafonsi_nodes)
+setdiff(TS_plankt_nodes,TS_nano_nodes)
+setdiff(TS_nano_nodes,TS_plankt_nodes)
+setdiff(TS_Cafonsi_nodes,TS_plankt_nodes)
+setdiff(TS_plankt_nodes,TS_Cafonsi_nodes)
+
+## MC plankto vs nano
+same_nano_plankt_MC<-intersect(MC_plankt_nodes,MC_nano_nodes)
+length(same_nano_plankt_MC) #7
+## MC plankto vs fonsi
+same_plankt_Cafonsi_MC<-intersect(MC_plankt_nodes,MC_Cafonsi_nodes)
+length(same_plankt_Cafonsi_MC) #1
+## MC plankto vs basal
+same_basal_plankt_MC<-intersect(MC_basal_fonsi_nodes,MC_plankt_nodes)
+length(same_basal_plankt_MC) #6
+## MC nano vs fonsi
+same_nano_Cafonsi_MC<-intersect(MC_Cafonsi_nodes,MC_nano_nodes)
+length(same_nano_Cafonsi_MC) #14
+## MC nano vs basal
+same_basal_nano_MC<-intersect(MC_basal_fonsi_nodes,MC_nano_nodes)
+length(same_basal_nano_MC) #9
+## MC fonsi vs basal
+same_basal_Cafonsi_MC<-intersect(MC_Cafonsi_nodes,MC_basal_fonsi_nodes)
+length(same_basal_Cafonsi_MC) #3
+
+same_nano_plankt_fonsi_MC<-intersect(same_nano_plankt_MC,MC_Cafonsi_nodes)
+same_nano_plankt_MC
+same_plankt_Cafonsi_MC
+same_nano_Cafonsi_MC
+same_nano_plankt_fonsi_MC
+setdiff(MC_Cafonsi_nodes,MC_nano_nodes)
+setdiff(MC_nano_nodes,MC_Cafonsi_nodes)
+setdiff(MC_plankt_nodes,MC_nano_nodes)
+setdiff(MC_nano_nodes,MC_plankt_nodes)
+setdiff(MC_Cafonsi_nodes,MC_plankt_nodes)
+setdiff(MC_plankt_nodes,MC_Cafonsi_nodes)
+
+
+
+
+
+##same but with genus
+##get names of OTUs
+TS_nano_genera<-TS_Nanopel_1_node$genus
+length(TS_nano_genera) #31
+MC_nano_genera<-MC_Nanopel_1_node$genus
+length(MC_nano_genera) #20
+TS_plankt_genera<-TS_Planktop_1_node$genus
+length(TS_plankt_genera) #53
+MC_plankt_genera<-MC_Planktop_1_node$genus
+length(MC_plankt_genera) #8
+TS_Cafonsi_genera<-TS_Cafonsi_1_node$genus
+length(TS_Cafonsi_genera) #25
+MC_Cafonsi_genera<-MC_Cafonsi_1_node$genus
+length(MC_Cafonsi_genera) #23
+TS_basal_fonsi_genera<-TS_basal_fonsi_1_node$genus
+length(TS_basal_fonsi_genera) #17
+MC_basal_fonsi_genera<-MC_basal_fonsi_1_node$genus
+length(MC_basal_fonsi_genera) #12
+
+##get nodes that are in both TS and MC 1° cohorts
+same_nano<-intersect(TS_nano_nodes,MC_nano_nodes)
+length(same_nano) #8
+##get nodes that are in both TS and MC planktophila 1° cohorts
+same_planktg<-intersect(TS_plankt_genera,MC_plankt_genera)
+length(same_planktg) #3
+same_Cafonsig<-intersect(TS_Cafonsi_genera,MC_Cafonsi_genera)
+length(same_Cafonsig) #2
+same_basal_fonsig<-intersect(TS_basal_fonsi_genera,MC_basal_fonsi_genera)
+length(same_basal_fonsig) #3
+
+##compare across TS network
+## TS plankto vs nano
+same_nano_plankt_TSg<-intersect(TS_plankt_genera,TS_nano_genera)
+length(same_nano_plankt_TSg) #5
+## TS plankto vs fonsi
+same_plankt_Cafonsi_TSg<-intersect(TS_plankt_genera,TS_Cafonsi_genera)
+length(same_plankt_Cafonsi_TSg) #7
+## TS plankto vs basal
+same_basal_plankt_TSg<-intersect(TS_basal_fonsi_genera,TS_plankt_genera)
+length(same_basal_plankt_TSg) #8
+## TS nano vs fonsi
+same_nano_Cafonsi_TSg<-intersect(TS_Cafonsi_genera,TS_nano_genera)
+length(same_nano_Cafonsi_TSg) #6
+## TS nano vs basal
+same_basal_nano_TSg<-intersect(TS_basal_fonsi_genera,TS_nano_genera)
+length(same_basal_nano_TSg) #2
+## TS fonsi vs basal
+same_basal_Cafonsi_TSg<-intersect(TS_Cafonsi_nodes,TS_basal_fonsi_nodes)
+length(same_basal_Cafonsi_TSg) #3
+##TS plankto, nano, fonsi
+same_nano_plankt_fonsi_TSg<-intersect(same_nano_plankt_TSg,TS_Cafonsi_genera)
+
+same_nano_plankt_TSg
+same_plankt_Cafonsi_TSg
+same_nano_Cafonsi_TSg
+same_nano_plankt_fonsi_TSg
+setdiff(TS_Cafonsi_genera,TS_nano_genera)
+setdiff(TS_nano_genera,TS_Cafonsi_genera)
+setdiff(TS_plankt_genera,TS_nano_genera)
+setdiff(TS_nano_genera,TS_plankt_genera)
+setdiff(TS_Cafonsi_genera,TS_plankt_genera)
+setdiff(TS_plankt_genera,TS_Cafonsi_genera)
+
+## MC plankto vs nano
+same_nano_plankt_MCg<-intersect(MC_plankt_genera,MC_nano_genera)
+length(same_nano_plankt_MC) #7
+## MC plankto vs fonsi
+same_plankt_Cafonsi_MCg<-intersect(MC_plankt_genera,MC_Cafonsi_genera)
+length(same_plankt_Cafonsi_MCg) #3
+## MC plankto vs basal
+same_basal_plankt_MCg<-intersect(MC_basal_fonsi_genera,MC_plankt_genera)
+length(same_basal_plankt_MCg) #6
+## MC nano vs fonsi
+same_nano_Cafonsi_MCg<-intersect(MC_Cafonsi_genera,MC_nano_genera)
+length(same_nano_Cafonsi_MCg) #4
+## MC nano vs basal
+same_basal_nano_MCg<-intersect(MC_basal_fonsi_genera,MC_nano_genera)
+length(same_basal_nano_MCg) #6
+## MC fonsi vs basal
+same_basal_Cafonsi_MCg<-intersect(MC_Cafonsi_genera,MC_basal_fonsi_genera)
+length(same_basal_Cafonsi_MCg) #3
+
+same_nano_plankt_fonsi_MCg<-intersect(same_nano_plankt_MCg,MC_Cafonsi_genera)
+same_nano_plankt_MCg
+same_plankt_Cafonsi_MCg
+same_nano_Cafonsi_MCg
+same_nano_plankt_fonsi_MCg
+setdiff(MC_Cafonsi_genera,MC_nano_genera)
+setdiff(MC_nano_genera,MC_Cafonsi_genera)
+setdiff(MC_plankt_genera,MC_nano_genera)
+setdiff(MC_nano_genera,MC_plankt_genera)
+setdiff(MC_Cafonsi_genera,MC_plankt_genera)
+setdiff(MC_plankt_genera,MC_Cafonsi_genera)
+
+```
+
+```{r}
+savehistory("./Mondav_etal_2020_Erken_network/data/network_revisions.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network_revisions.RData")
 ```
