@@ -1,0 +1,245 @@
+---
+title: "phylogenetic_signal_Rscripts"
+author: "RMondav"
+date: "03/12/2019"
+output: html_document
+---
+
+##This section deals with the phylogenetic signal in the networks
+##The analyses focus on the primary cohorts of the nanopelagicus,  
+##planktophila, and LD12 genera
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+##install required packages
+r <- getOption("repos")
+r["CRAN"] <-"https://mirrors.dotsrc.org/cran/"
+options(repos = r)
+## install required packages
+if(!require(ape)){
+  install.packages("ape")
+}
+if(!require(picante)){
+  install.packages("picante")
+}
+if(!require(igraph)){
+  install.packages("igraph")
+}
+if(!require(scales)){
+  devtools::install_github("scales")
+}
+
+##load required packages
+library(ape)
+library(picante)
+library(igraph)
+```
+
+##set up to do phylogenetic distance work
+```{r}
+##read in rooted, low-branch-support-collapsed trees
+nwk80_tree_wtaxon <-
+  read.tree("./Mondav_etal_2020_Erken_network/data/clean_rep_set_aligned_pfiltered_FastTree_gtrG_wtaxon_rooted_ovr80.tree")
+nwk80_tree <-
+  read.tree("./Mondav_etal_2020_Erken_network/data/clean_rep_set_aligned_pfiltered_FastTree_gtrG_rooted_ovr80.tree")
+
+##load up timeseries network
+N1500_TS_n150s29 <-
+  read.delim("./Mondav_etal_2020_Erken_network/data/N1500_time_series_n150s29.txt", row.names=1)
+#convert to numeric
+N1500_TS_n150s29m<-data.matrix(N1500_TS_n150s29, rownames.force = T)
+N1500_TS_n150s29t<-t(N1500_TS_n150s29m) #transform table
+
+##load up mixed cluture network
+N500_MC_ns <-read.delim("./Mondav_etal_2020_Erken_network/data/N500_mixed_cultures.txt", row.names=1)
+N500_MC_nsm<-data.matrix(N500_MC_ns, rownames.force = T) ##make numeric
+N500_MC_nst<-t(N500_MC_nsm) ##transform table
+#N500_MC_nst <- N500_MC_nst[-c(1),] ##remove taxonomy row
+```
+
+
+
+#######primary cohort work#######
+##associated with Figure 2 and 3
+```{r}
+##read in node names of primary cohort as lists
+##Fonsibacter spp. primary cohort
+TS_Cafonsi_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Cafonsi.csv")
+MC_Cafonsi_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Cafonsi.csv")
+
+##basal fonsi sp. primary cohort
+TS_basal_fonsi_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_basal_fonsi.csv")
+MC_basal_fonsi_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_basal_fonsi.csv")
+
+##Nanopelagicus spp. primary cohort
+TS_Nanopel_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Nanopelagicus.csv")
+MC_Nanopel_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Nanopelagicus.csv")
+##Planktophila spp. primary cohort
+TS_Planktop_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Planktophila.csv")
+MC_Planktop_1_node <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Planktophila.csv")
+
+##make primary cohort subset OTU tables from original
+#TS_all_fonsi_1m<-subset(N1500_TS_n150s29t,select=TS_all_fonsi_1_node$name)
+TS_basal_fonsi_1m<-subset(N1500_TS_n150s29t,select=TS_basal_fonsi_1_node$name)
+TS_Cafonsi_1m<-subset(N1500_TS_n150s29t,select=TS_Cafonsi_1_node$name)
+TS_Nanopel_1m<-subset(N1500_TS_n150s29t,select=TS_Nanopel_1_node$name)
+TS_Planktop_1m<-subset(N1500_TS_n150s29t,select=TS_Planktop_1_node$name)
+#MC_all_fonsi_1m<-subset(N500_MC_nst,select=MC_all_fonsi_1_node$name)
+MC_basal_fonsi_1m<-subset(N500_MC_nst,select=MC_basal_fonsi_1_node$name)
+MC_Cafonsi_1m<-subset(N500_MC_nst,select=MC_Cafonsi_1_node$name)
+MC_Nanopel_1m<-subset(N500_MC_nst,select=MC_Nanopel_1_node$name)
+MC_Planktop_1m<-subset(N500_MC_nst,select=MC_Planktop_1_node$name)
+
+##get phylogentic distances with formula format:
+##pd.result <- pd(community, phylogenetic tree, include.root=TRUE)
+#TSt_PDp<-pd(TS_n150s29t,prunedtree_TS) #pruned tree makes it impossible to compare
+#MCt_PDp<-pd(N500_MC_nst,prunedtree_MC)
+TSt_PD<-pd(TS_n150s29t,nwk80_tree) ##dont include root as no archaea in cohort
+MCt_PD<-pd(N500_MC_nst,nwk80_tree)
+
+## correlation between phylog and cooccurance of whole dataset
+#TSt_PDvCorr<-
+#  comm.phylo.cor(TS_n150s29t, nwk80_tree, metric = "checkerboard",
+#    null.model = "independentswap", runs = 1000)
+#MCt_PDvCorr<-
+#  comm.phylo.cor(N500_MC_nst, nwk80_tree, metric = "checkerboard",
+#    null.model = "independentswap", runs = 1000)
+
+##get phylogentic tree as a matrix of distances
+phydist_nwk80<-cophenetic(nwk80_tree)
+
+##phylogenetic distance (PD) of primary cohorts
+pd_TS_all_fonsi_1m<-pd(TS_all_fonsi_1m,nwk80_tree)
+pd_MC_all_fonsi_1m<-pd(MC_all_fonsi_1m,nwk80_tree)
+pd_TS_basal_fonsi_1m<-pd(TS_basal_fonsi_1m,nwk80_tree)
+pd_MC_basal_fonsi_1m<-pd(MC_basal_fonsi_1m,nwk80_tree)
+pd_TS_Cafonsi_1m<-pd(TS_Cafonsi_1m,nwk80_tree)
+pd_MC_Cafonsi_1m<-pd(MC_Cafonsi_1m,nwk80_tree)
+pd_TS_Nanopel_1m<-pd(TS_Nanopel_1m,nwk80_tree)
+pd_MC_Nanopel_1m<-pd(MC_Nanopel_1m,nwk80_tree)
+pd_TS_Planktop_1m<-pd(TS_Planktop_1m,nwk80_tree)
+pd_MC_Planktop_1m<-pd(MC_Planktop_1m,nwk80_tree)
+
+
+##read in edge details of primary cohorts
+##Fonsibacter spp. primary cohort
+TS_Cafonsi_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Cafonsi_1_edge.csv")
+MC_Cafonsi_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Cafonsi_1_edge.csv")
+
+##basal fonsi sp. primary cohort
+TS_basal_fonsi_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_basal_fonsi_1_edge.csv")
+MC_basal_fonsi_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_basal_fonsi_1_edge.csv")
+
+##LD12 spp. primary cohort
+#TS_all_fonsi_1_edge <-read.csv("./Mondav_etal_2020_Erken_network/data/TS_all_fonsi_1_edge.csv")
+#MC_all_fonsi_1_edge <-read.csv("./Mondav_etal_2020_Erken_network/data/MC_all_fonsi_1_edge.csv")
+
+##Nanopelagicus spp. primary cohort
+TS_Nanopel_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Nanopelagicus_1_edge.csv")
+MC_Nanopel_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Nanopelagicus_1_edge.csv")
+
+##Planktophila spp. primary cohort
+TS_Planktop_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/TS_Planktophila_1_edge.csv")
+MC_Planktop_1_edge <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/MC_Planktophila_1_edge.csv")
+
+##set colours
+bgTS_basal<-as.character(TS_basal_fonsi_1_edge$from_col)
+colTS_basal<-as.character(TS_basal_fonsi_1_edge$to_col)
+bgTS_fons<-as.character(TS_Cafonsi_1_edge$from_col)
+colTS_fons<-as.character(TS_Cafonsi_1_edge$to_col)
+bgTS_Plank<-as.character(TS_Planktop_1_edge$from_col)
+colTS_Plank<-as.character(TS_Planktop_1_edge$to_col)
+bgTS_Nano<-as.character(TS_Nanopel_1_edge$from_col)
+colTS_Nano<-as.character(TS_Nanopel_1_edge$to_col)
+bgMC_basal<-as.character(MC_basal_fonsi_1_edge$from_col)
+colMC_basal<-as.character(MC_basal_fonsi_1_edge$to_col)
+bgMC_fons<-as.character(MC_Cafonsi_1_edge$from_col)
+colMC_fons<-as.character(MC_Cafonsi_1_edge$to_col)
+bgMC_Plank<-as.character(MC_Planktop_1_edge$from_col)
+colMC_Plank<-as.character(MC_Planktop_1_edge$to_col)
+bgMC_Nano<-as.character(MC_Nanopel_1_edge$from_col)
+colMC_Nano<-as.character(MC_Nanopel_1_edge$to_col)
+```
+
+##plot phylogenetic distance against the average OTU correlation
+## Figure 3
+```{r plots, echo==FALSE}
+##graph the correlatin between PD and abundance corrs
+par(mfrow=c(2,2),mar=c(4,4,3,1))
+plot(TS_Planktop_1_edge$phydist,TS_Planktop_1_edge$av_corr,
+     xlim=c(0,1),ylim=c(-0.6,0.8),abline(h=0,col="black",lty=3),
+     pch=21,bg=bgTS_Plank,col=NA,
+     xlab="PD from Planktophila spp.",
+     ylab="av. corr with Planktophila spp. TS")
+plot(TS_Nanopel_1_edge$phydist,TS_Nanopel_1_edge$av_corr,
+     xlim=c(0,1),ylim=c(-0.6,0.8),abline(h=0,col="black",lty=3),
+     pch=21,bg=bgTS_Nano,col=NA,
+     xlab="PD from Nanopelagicus spp.",
+     ylab="av. corr with Nanopelagicus spp. TS")
+plot(TS_Cafonsi_1_edge$phydist,TS_Cafonsi_1_edge$av_corr,
+     xlim=c(0,1),ylim=c(-0.6,0.8),abline(h=0,col="black",lty=3),
+     pch=21,bg=bgTS_fons,col=NA,
+     xlab="PD from Fonsibacter spp.",
+     ylab="av. corr with Ca.Fonsibacter spp. TS")
+plot(TS_basal_fonsi_1_edge$phydist,TS_basal_fonsi_1_edge$av_corr,
+     xlim=c(0,1),ylim=c(-0.6,0.8),abline(h=0,col="black",lty=3),
+     pch=21,bg=bgTS_basal,col=NA,
+     xlab="PD from basal Fonsibacter sp.",
+     ylab="av. corr with basal Fonsibacter sp. TS")
+```
+
+
+```{r}
+##descriptive stats of primary cohort
+if(!require(pastecs)){
+  install.packages("pastecs")
+}
+library(pastecs)
+##make TS PD descriptive stats
+##make dataframe
+primcohort_summary<-data.frame(stat.desc(TS_basal_fonsi_1_edge$av_corr))
+##change column name
+primcohort_summary$TS_basal_fonsi_corr<-
+  primcohort_summary$stat.desc.TS_basal_fonsi_1_edge.av_corr.
+primcohort_summary<-primcohort_summary[2]
+##add more data columns 
+primcohort_summary$TS_Cafonsi_corr<-stat.desc(TS_Cafonsi_1_edge$av_corr)
+primcohort_summary$TS_Planktop_corr<-stat.desc(TS_Planktop_1_edge$av_corr)
+primcohort_summary$TS_Nanopel_corr<-stat.desc(TS_Nanopel_1_edge$av_corr)
+primcohort_summary$TS_basal_fonsi_phydist<-stat.desc(TS_basal_fonsi_1_edge$phydist)
+primcohort_summary$TS_Cafonsi_phydist<-stat.desc(TS_Cafonsi_1_edge$phydist)
+primcohort_summary$TS_Planktop_phydist<-stat.desc(TS_Planktop_1_edge$phydist)
+primcohort_summary$TS_Nanopel_phydist<-stat.desc(TS_Nanopel_1_edge$phydist)
+##round to three decimal places
+primcohort_summary<-round(primcohort_summary, 3)
+
+if(!require(car)){
+  install.packages("car")
+}
+library(car)
+primcohort_data <-
+  read.csv("./Mondav_etal_2020_Erken_network/data/primcohort_data.csv")
+primsumm_anova <- aov(av_corr ~ phydist*primary, data = primcohort_data)
+Anova(primsumm_anova, type = "III")
+```
+
+```{r}
+savehistory("./Mondav_etal_2020_Erken_network/data/PD.Rhistory")
+save.image("./Mondav_etal_2020_Erken_network/data/erken_network.RData")
+```
