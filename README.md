@@ -16,3 +16,7 @@ https://www.ebi.ac.uk/ena/browser/view/PRJEB20109
 https://www.ebi.ac.uk/ena/browser/view/PRJEB35605
 
 https://www.ebi.ac.uk/ena/browser/view/PRJEB37497
+
+
+
+<a href="https://zenodo.org/badge/latestdoi/344083521"><img src="https://zenodo.org/badge/344083521.svg" alt="DOI"></a>
