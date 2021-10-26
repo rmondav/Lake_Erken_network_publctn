@@ -21,4 +21,4 @@ https://www.ebi.ac.uk/ena/browser/view/PRJEB37497
 
 <a href="https://zenodo.org/badge/latestdoi/344083521"><img src="https://zenodo.org/badge/344083521.svg" alt="DOI"></a>
 
-![](https://komarev.com/ghpvc/?username=rmondav&style=flat-square&color=20b2aa&label=counter)
+![](https://komarev.com/ghpvc/?username=rmondav&style=flat&color=20b2aa&label=counter)
